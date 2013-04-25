@@ -1,0 +1,94 @@
+<html>
+    <head>
+{% load staticfiles %}
+        <title>My Hangman Game</title>
+        <link charset="utf-8" href={% static "css/hangman.css" %} media="screen" rel="stylesheet" type="text/css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0-rc.3/handlebars.min.js"></script>
+
+        <script charset="utf-8" src={% static "js/app.js" %} type="text/javascript"></script>
+    </head>
+
+    <body>
+        <div id="stage">
+            <div id="west">
+                <div id="ground">
+                    <div id="string" style="visibility: visible;"></div>
+                    <div id="hangman">
+                        <img id="head" src="/static//images/head.png" style="visibility: hidden;">
+                        <img id="body" src="/static/images/body.png" style="visibility: hidden;">
+                        <img id="right_arm" src="/static//images/right_arm.png" style="visibility: hidden;">
+                        <img id="left_arm" src="/static//images/left_arm.png" style="visibility: hidden;">
+                        <img id="right_leg" src="/static//images/right_leg.png" style="visibility: hidden;">
+                        <img id="left_leg" src="/static//images/left_leg.png" style="visibility: hidden;">
+                    </div>
+                </div>
+            </div>
+            <div id="east">
+                <h1>Welcome to my Hangman Game</h1>
+                <div id="word" style="display: block;">
+                        <span class="placeholder">&nbsp;</span>
+                        <span class="placeholder">&nbsp;</span>
+                        <span class="placeholder">&nbsp;</span>
+                        <span class="placeholder">&nbsp;</span>
+                        <span class="placeholder">&nbsp;</span>
+                        <span class="placeholder">&nbsp;</span>
+                </div>
+                <div id="characters" style="display: block;">
+                    <span class="character" char="A">A</span>
+                    <span class="character" char="B">B</span>
+                    <span class="character" char="C">C</span>
+                    <span class="character" char="D">D</span>
+                    <span class="character" char="E">E</span>
+                    <span class="character" char="F">F</span>
+                    <span class="character" char="G">G</span>
+                    <span class="character" char="H">H</span>
+                    <span class="character" char="I">I</span>
+                    <span class="character" char="J">J</span>
+                    <span class="character" char="K">K</span>
+                    <span class="character" char="L">L</span>
+                    <span class="character" char="M">M</span>
+                    <span class="character" char="N">N</span>
+                    <span class="character" char="O">O</span>
+                    <span class="character" char="P">P</span>
+                    <span class="character" char="Q">Q</span>
+                    <span class="character" char="R">R</span>
+                    <span class="character" char="S">S</span>
+                    <span class="character" char="T">T</span>
+                    <span class="character" char="U">U</span>
+                    <span class="character" char="V">V</span>
+                    <span class="character" char="W">W</span>
+                    <span class="character" char="X">X</span>
+                    <span class="character" char="Y">Y</span>
+                    <span class="character" char="Z">Z</span>
+                </div>
+                <div id="answer" style="display: none;"></div>
+                <div id="options" style="margin: 30px 0;">
+                    <a class="action_button" id="new_game" value="New game">New Game</a>
+                    <input style="display:none;" type="button" id="show_answer" class="action_button" value="Show answer">
+                </div>
+            </div>
+            <div id="far-east">
+                <h2>Guesses</h2>
+                <ul id="guesses">
+                </ul>
+            </div>
+        </div>
+{% load verbatim_tags %}
+{% verbatim %}
+        <script id="word_template" type="text/x-handlebars">
+            {{#each characters}}
+                {{displayCharacter}}
+            {{/each}}
+        </script>
+
+        <script id="character_template" type="text/x-handlebars">
+            {{#each characters}}
+                <span class="character" char="{{this}}">{{this}}</span>
+            {{/each}}
+        </script>
+{% endverbatim %}
+
+</body></html>
